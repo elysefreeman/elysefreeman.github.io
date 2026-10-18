@@ -1,11 +1,237 @@
-html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Personal Website</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name – Class Projects</title>
+<meta name="description" content="Projects I’ve built for my classes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f8fc;
+    --grid: #dbe3f3;
+    --card: #ffffff;
+    --ink: #17233f;
+    --muted: #55617c;
+    --blue: #3a63e8;
+    --marker: #ffd84a;
+    --line: #17233f;
+    --display: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+    --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #121a2e;
+      --grid: #1e2944;
+      --card: #1a2540;
+      --ink: #eef2fb;
+      --muted: #a4b0cc;
+      --blue: #8aa4ff;
+      --line: #eef2fb;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 28px 28px;
+    line-height: 1.6;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header { padding: 72px 0 40px; }
+  h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2.6rem, 8vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin: 0 0 16px;
+  }
+  .tagline { font-size: 1.2rem; max-width: 34em; margin: 0 0 24px; color: var(--muted); }
+  .links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    background: var(--card);
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 3px 3px 0 var(--line);
+    transition: transform .12s, box-shadow .12s;
+  }
+  .btn:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--line); }
+  .btn.primary { background: var(--marker); color: #17233f; }
+
+  /* Filters */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 28px; }
+  .filters button {
+    font: inherit;
+    font-weight: 600;
+    padding: 6px 14px;
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+  /* Project cards */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 24px; padding-bottom: 72px; }
+  .card {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 5px 5px 0 var(--line);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform .15s;
+  }
+  .card:hover { transform: rotate(-1deg) translateY(-3px); }
+  .card .top { padding: 10px 18px; border-bottom: 2px solid var(--line); font-weight: 600; font-size: .9rem; color: #17233f; }
+  .card .body { padding: 18px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .card h2 { font-family: var(--display); font-size: 1.4rem; line-height: 1.15; margin: 0; }
+  .card p { margin: 0; color: var(--muted); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+  .tags span { font-size: .8rem; font-weight: 600; padding: 2px 10px; border-radius: 6px; background: var(--grid); }
+  .card .actions { display: flex; gap: 16px; font-weight: 600; }
+  .card .actions a { text-decoration-thickness: 2px; text-underline-offset: 4px; color: var(--blue); }
+  .empty { padding: 40px 0; color: var(--muted); }
+
+  footer { border-top: 2px solid var(--line); background: var(--card); padding: 28px 0; color: var(--muted); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .card, .btn { transition: none; }
+    .card:hover { transform: none; }
+  }
+</style>
 </head>
 <body>
-    <h1>Hello, World! This is my GitHub website.</h1>
-</body >
+
+<header>
+  <div class="wrap">
+    <h1>Hi, I’m Your Name.</h1>
+    <p class="tagline">
+      I’m a [your major] student at [your school]. This is where I keep the things I’ve built for class,
+      from first scripts to full apps.
+    </p>
+    <div class="links">
+      <a class="btn primary" href="#projects">See my projects</a>
+      <a class="btn" href="https://github.com/YOUR-USERNAME">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/YOUR-HANDLE">LinkedIn</a>
+      <a class="btn" href="mailto:you@example.com">Email me</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="projects">
+  <div class="filters" id="filters" role="group" aria-label="Filter projects by course"></div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> Your Name. Built with plain HTML, CSS and a little JavaScript.</div>
+</footer>
+
+<script>
+  // ✏️ EDIT THIS LIST: one object per project. Add or delete freely.
+  // "color" sets the card’s header strip. Use any light color.
+  const projects = [
+    {
+      title: "Weather Dashboard",
+      course: "CS 101",
+      color: "#ffd84a",
+      description: "Pulls live forecasts from a public API and shows a five-day outlook with icons.",
+      tags: ["JavaScript", "API", "HTML/CSS"],
+      repo: "https://github.com/YOUR-USERNAME/weather-dashboard",
+      demo: "https://YOUR-USERNAME.github.io/weather-dashboard"
+    },
+    {
+      title: "Library Database",
+      course: "Databases",
+      color: "#9ee6c1",
+      description: "A SQL schema and Python app for checking books in and out, with overdue reports.",
+      tags: ["SQL", "Python"],
+      repo: "https://github.com/YOUR-USERNAME/library-db"
+    },
+    {
+      title: "Maze Solver",
+      course: "Algorithms",
+      color: "#ffb4a8",
+      description: "Compares BFS, DFS and A* on randomly generated mazes and charts how fast each one finishes.",
+      tags: ["Python", "Algorithms", "Matplotlib"],
+      repo: "https://github.com/YOUR-USERNAME/maze-solver"
+    },
+    {
+      title: "Study Buddy App",
+      course: "Web Dev",
+      color: "#b9c8ff",
+      description: "A flashcard site with spaced repetition and a streak counter to keep me honest.",
+      tags: ["React", "Node.js"],
+      repo: "https://github.com/YOUR-USERNAME/study-buddy",
+      demo: "https://YOUR-USERNAME.github.io/study-buddy"
+    }
+  ];
+
+  const grid = document.getElementById("grid");
+  const filters = document.getElementById("filters");
+  let active = "All";
+
+  function el(tag, props = {}, children = []) {
+    const node = document.createElement(tag);
+    Object.assign(node, props);
+    children.forEach(c => node.append(c));
+    return node;
+  }
+
+  function renderCards() {
+    grid.replaceChildren();
+    const shown = projects.filter(p => active === "All" || p.course === active);
+    if (!shown.length) grid.append(el("p", { className: "empty", textContent: "No projects in this course yet." }));
+    shown.forEach(p => {
+      const top = el("div", { className: "top", textContent: p.course });
+      top.style.background = p.color;
+      const actions = el("div", { className: "actions" });
+      if (p.repo) actions.append(el("a", { href: p.repo, textContent: "View code", target: "_blank", rel: "noopener" }));
+      if (p.demo) actions.append(el("a", { href: p.demo, textContent: "Live demo", target: "_blank", rel: "noopener" }));
+      const body = el("div", { className: "body" }, [
+        el("h2", { textContent: p.title }),
+        el("p", { textContent: p.description }),
+        el("div", { className: "tags" }, p.tags.map(t => el("span", { textContent: t }))),
+        actions
+      ]);
+      grid.append(el("article", { className: "card" }, [top, body]));
+    });
+  }
+
+  function renderFilters() {
+    filters.replaceChildren();
+    ["All", ...new Set(projects.map(p => p.course))].forEach(name => {
+      const b = el("button", { type: "button", textContent: name });
+      b.setAttribute("aria-pressed", String(name === active));
+      b.addEventListener("click", () => { active = name; renderFilters(); renderCards(); });
+      filters.append(b);
+    });
+  }
+
+  renderFilters();
+  renderCards();
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
 </html>
